@@ -71,7 +71,7 @@ public class BasicStats {
     }
 
     public static double max(double ... numbers) {
-        double maxNumber = Double.NegativeInfinity;
+        double maxNumber = Double.NEGATIVE_INFINITY;
 
         for (double num: numbers)
         {

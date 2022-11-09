@@ -28,6 +28,7 @@ public class BasicStatsGUI implements View
     private CountView countView;
     private MedianView medianView;
     private MeanView meanView;
+    private MaxView maxView;
     private NumbersView numbersView;
     JTextField jtfNumber;
 
@@ -41,16 +42,20 @@ public class BasicStatsGUI implements View
 
 	// Panel that shows stats about the numbers
 	JPanel jpStats = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
 	countView = new CountView();
     medianView = new MedianView();
     meanView = new MeanView();
-
+    maxView = new MaxView();
 	jpStats.add(new JLabel("Numbers:"));
 	jpStats.add(countView.getView());
 	jpStats.add(new JLabel("Median:"));
 	jpStats.add(medianView.getView());
 	jpStats.add(new JLabel("Mean:"));
 	jpStats.add(meanView.getView());
+    jpStats.add(new JLabel("Max:"));
+	jpStats.add(maxView.getView());
+
 	jfMain.getContentPane().add(jpStats, BorderLayout.CENTER);
 
 	// TextArea that shows all the numbers
@@ -71,6 +76,7 @@ public class BasicStatsGUI implements View
 		    update(model);
 		}
 	    });
+
 	jtfNumber = new JTextField(5);
     //jtfNumber.setEditable(true);
 	JButton jbAdd = new JButton("Add number");
@@ -105,6 +111,8 @@ public class BasicStatsGUI implements View
 	    medianView.update(model);
 
         numbersView.update(model);
+
+        maxView.update(model);
     }
 
     public void show() {
