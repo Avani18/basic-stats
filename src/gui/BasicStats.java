@@ -69,4 +69,18 @@ public class BasicStats {
 
       return mode;
     }
+
+    public static double max(double ... numbers) {
+        double maxNumber = Double.NegativeInfinity;
+
+        for (double num: numbers)
+        {
+            if (num > maxNumber)
+            {
+                maxNumber = num;
+            }
+        }
+
+        return maxNumber;
+    }
 }
