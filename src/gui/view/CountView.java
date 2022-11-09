@@ -6,8 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-//import model.BasicStatsModel;
-import View;
+import model.BasicStatsModel;
+import gui.view.View;
 
 class CountView implements View
 {
@@ -24,8 +24,20 @@ class CountView implements View
     @Override
     public void update(BasicStatsModel model)
     {
-        count = model.getArrayDouble().length;
-        jtfCount.setText("" + count);
+        if (model.getArrayDouble().length == 0)
+        {
+            jtfCount.setText("");
+        }
+        else
+        {
+            count = model.getArrayDouble().length;
+            jtfCount.setText("" + count);
+        }
+    }
+
+    public JTextField getView()
+    {
+        return jtfCount;
     }
 
 }

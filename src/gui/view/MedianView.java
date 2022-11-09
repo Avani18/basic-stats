@@ -6,8 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-//import model.BasicStatsModel;
-import View;
+import model.BasicStatsModel;
+import gui.view.View;
 
 class MedianView implements View
 {
@@ -24,8 +24,20 @@ class MedianView implements View
     @Override
     public void update(BasicStatsModel model)
     {
-        median = BasicStats.median(model.getArrayDouble());
-        jtfMedian.setText("" + median);
+        if (model.getArrayDouble().length == 0)
+        {
+            jtfMedian.setText("");
+        }
+        else
+        {
+            median = BasicStats.median(model.getArrayDouble());
+            jtfMedian.setText("" + median);
+        }
+    }
+
+    public JTextField getView()
+    {
+        return jtfMedian;
     }
 
 }

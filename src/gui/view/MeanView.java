@@ -6,8 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-//import model.BasicStatsModel;
-import View;
+import model.BasicStatsModel;
+import gui.view.View;
 
 class MeanView implements View
 {
@@ -24,8 +24,20 @@ class MeanView implements View
     @Override
     public void update(BasicStatsModel model)
     {
-        mean = BasicStats.mean(model.getArrayDouble());
-        jtfMean.setText("" + mean);
+        if (model.getArrayDouble().length == 0)
+        {
+            jtfMean.setText("");
+        }
+        else
+        {
+            mean = BasicStats.mean(model.getArrayDouble());
+            jtfMean.setText("" + mean);
+        }
+    }
+
+    public JTextField getView()
+    {
+        return jtfMean;
     }
 
 }
