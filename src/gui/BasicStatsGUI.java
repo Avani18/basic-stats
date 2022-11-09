@@ -83,9 +83,23 @@ public class BasicStatsGUI implements View
 	jbAdd.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 		    // Parse input and add number to the ArrayList
-		    Double num = Double.parseDouble(jtfNumber.getText());
-		    model.addNumber(num);
-		    update(model);
+            try
+            {
+                Double num = Double.parseDouble(jtfNumber.getText());
+                model.addNumber(num);
+    		    update(model);
+            }
+            catch(NumberFormatException nfe)
+            {
+                JOptionPane.showMessageDialog(jfMain, "Please enter a valid number!",
+               "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            catch(NullPointerException npe)
+            {
+                JOptionPane.showMessageDialog(jfMain, "Please enter a number!",
+               "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
 		}
 	    });
 	JPanel jpInput = new JPanel(new FlowLayout(FlowLayout.CENTER));
