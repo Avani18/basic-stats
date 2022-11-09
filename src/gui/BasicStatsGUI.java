@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import model.BasicStatsModel;
-import gui.view.View;
+import gui.view.*;
 
 
 /**
@@ -22,42 +22,42 @@ import gui.view.View;
 public class BasicStatsGUI implements View
 {
     public static final String APP_TITLE = "Simple stats";
-    
+
     private static BasicStatsModel model = new BasicStatsModel();
-    private JTextField jtfCount;
-    private JTextField jtfMedian;
-    private JTextField jtfMean;
-    private JTextArea jtaNumbers;
+
+    private CountView countView;
+    private MedianView medianView;
+    private MeanView meanView;
+    private NumbersView numbersView;
+    JTextField jtfNumber;
+
     private JFrame jfMain = new JFrame(APP_TITLE);
 
-    public BasicStatsGUI() {	
+    public BasicStatsGUI() {
 	// Create the main frame of the application, and set size and position
 	jfMain.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	jfMain.setSize(600,400);
 	jfMain.setLocationRelativeTo(null);
-	
+
 	// Panel that shows stats about the numbers
 	JPanel jpStats = new JPanel(new FlowLayout(FlowLayout.CENTER));
-	jtfCount = new JTextField(5);
-	jtfCount.setEditable(false);
-	jtfMedian = new JTextField(5);
-	jtfMedian.setEditable(false);
-	jtfMean = new JTextField(5);
-	jtfMean.setEditable(false);
+	countView = new CountView();
+    medianView = new MedianView();
+    meanView = new MeanView();
+
 	jpStats.add(new JLabel("Numbers:"));
-	jpStats.add(jtfCount);
+	jpStats.add(countView.getView());
 	jpStats.add(new JLabel("Median:"));
-	jpStats.add(jtfMedian);
+	jpStats.add(medianView.getView());
 	jpStats.add(new JLabel("Mean:"));
-	jpStats.add(jtfMean);
+	jpStats.add(meanView.getView());
 	jfMain.getContentPane().add(jpStats, BorderLayout.CENTER);
-	
+
 	// TextArea that shows all the numbers
-	jtaNumbers = new JTextArea(10,50);
-	jtaNumbers.setEditable(false);
-	jfMain.getContentPane().add(jtaNumbers, BorderLayout.SOUTH);
-	
-	
+	numbersView = new NumbersView();
+	jfMain.getContentPane().add(numbersView.getView(), BorderLayout.SOUTH);
+
+
 	// Panel with a text field/button to enter numbers and a button to reset the application
 	JButton jbReset = new JButton("Reset");
 	jbReset.addActionListener(new ActionListener() {
@@ -71,15 +71,14 @@ public class BasicStatsGUI implements View
 		    update(model);
 		}
 	    });
-	JTextField jtfNumber = new JTextField(5);
+	jtfNumber = new JTextField(5);
+    //jtfNumber.setEditable(true);
 	JButton jbAdd = new JButton("Add number");
 	jbAdd.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 		    // Parse input and add number to the ArrayList
-		    
 		    Double num = Double.parseDouble(jtfNumber.getText());
 		    model.addNumber(num);
-
 		    update(model);
 		}
 	    });
@@ -87,40 +86,30 @@ public class BasicStatsGUI implements View
 	jpInput.add(jtfNumber);
 	jpInput.add(jbAdd);
 	jpInput.add(jbReset);
-	
-	
+
+
 	jfMain.getContentPane().add(jpInput, BorderLayout.NORTH);
     }
 
     public void update(BasicStatsModel model) {
-	if (model.getArrayDouble().length == 0) {
-	    jtaNumbers.setText("");
-	    jtfCount.setText("");
-	    jtfMedian.setText("");
-	    jtfMean.setText("");
-	}
-	else {
 	    // Update the displayed list of numbers
-	    double num = model.getArrayDouble()[model.getArrayDouble().length - 1];
-	    jtaNumbers.append(num + ",");
-	    
+        jtfNumber.setText("");
+
 	    // Compute and set the count
-	    int count = model.getArrayDouble().length;
-	    jtfCount.setText("" + count);
-	    
+	    countView.update(model);
+
 	    // Compute and set the mean
-	    double mean = BasicStats.mean(model.getArrayDouble());
-	    jtfMean.setText("" + mean);
-	    
+	    meanView.update(model);
+
 	    // Compute and set the median
-	    double median = BasicStats.median(model.getArrayDouble());
-	    jtfMedian.setText("" + median);	    
-	}
+	    medianView.update(model);
+
+        numbersView.update(model);
     }
 
     public void show() {
 	// Show the frame
 	jfMain.setVisible(true);
     }
-    
+
 }
