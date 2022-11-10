@@ -81,6 +81,10 @@ public class BasicStatsTest {
         model.addNumber(5.0);
         assertEquals(1, model.getArrayDouble().length);
 
+        // Add negative number successful
+        model.addNumber(-5.0);
+        assertEquals(2, model.getArrayDouble().length);
+
         // Add number fails
         model.addNumber(null);
     }
@@ -94,13 +98,28 @@ public class BasicStatsTest {
         max = BasicStats.max(numbers1);
         assertEquals(90.0, max, EPS);
 
-        // Max fails input validation and throws exception
-        double[] numbers2 = {};
+        // Max passes input validation and produces expected result
+        double[] numbers2 = {1, -3, 5, -43, 12, 87, -90};
         max = BasicStats.max(numbers2);
+        assertEquals(87.0, max, EPS);
+
+        // Max passes input validation and produces expected result
+        double[] numbers3 = {-10};
+        max = BasicStats.max(numbers3);
+        assertEquals(-10.0, max, EPS);
+
+        // Max passes input validation and produces expected result
+        double[] numbers4 = {-43, -12, -87, -90};
+        max = BasicStats.max(numbers4);
+        assertEquals(-12.0, max, EPS);
 
         // Max fails input validation and throws exception
-        double[] numbers3 = null;
-        max = BasicStats.max(numbers3);
+        double[] numbers5 = {};
+        max = BasicStats.max(numbers5);
+
+        // Max fails input validation and throws exception
+        double[] numbers6 = null;
+        max = BasicStats.max(numbers6);
     }
 
     @Test
@@ -117,7 +136,7 @@ public class BasicStatsTest {
     }
 
     @Test
-    public void testResetView() {
+    public void testResetController() {
         BasicStatsGUI bsg = new BasicStatsGUI();
         BasicStatsModel model = new BasicStatsModel();
 
