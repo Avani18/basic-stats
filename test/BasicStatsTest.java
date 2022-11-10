@@ -1,7 +1,10 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
+import javax.swing.*;
 
 import gui.BasicStats;
+import gui.BasicStatsGUI;
+import model.BasicStatsModel;
 
 public class BasicStatsTest {
     private static double EPS = 1e-9;
@@ -68,5 +71,74 @@ public class BasicStatsTest {
       double[] numbers5 = {};
       mode   = BasicStats.mode(numbers5);
       assertEquals (0, mode, EPS);
+    }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void testAddNum() {
+        BasicStatsModel model = new BasicStatsModel();
+
+        // Add number successful
+        model.addNumber(5.0);
+        assertEquals(1, model.getArrayDouble().length);
+
+        // Add number fails
+        model.addNumber(null);
+    }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void testMax() {
+        double max;
+
+        // Max passes input validation and produces expected result
+        double[] numbers1 = {1, 3, 5, 43, 12, 87, 90};
+        max = BasicStats.max(numbers1);
+        assertEquals(90.0, max, EPS);
+
+        // Max fails input validation and throws exception
+        double[] numbers2 = {};
+        max = BasicStats.max(numbers2);
+
+        // Max fails input validation and throws exception
+        double[] numbers3 = null;
+        max = BasicStats.max(numbers3);
+    }
+
+    @Test
+    public void testInitialView() {
+        BasicStatsGUI bsg = new BasicStatsGUI();
+
+        // Test all fields in initial configuration
+        assertEquals("", bsg.getCountView().getText());
+        assertEquals("", bsg.getMaxView().getText());
+        assertEquals("", bsg.getMeanView().getText());
+        assertEquals("", bsg.getMedianView().getText());
+        assertEquals("", bsg.getNumbersView().getText());
+        assertEquals("", bsg.getNumberField().getText());
+    }
+
+    @Test
+    public void testResetView() {
+        BasicStatsGUI bsg = new BasicStatsGUI();
+        BasicStatsModel model = new BasicStatsModel();
+
+        model.addNumber(10.0);
+        model.addNumber(20.0);
+
+        // Verify add number method
+        assertEquals(2, model.getArrayDouble().length);
+
+        JButton resetButton = bsg.getResetButton();
+        // Click reset button
+        resetButton.doClick();
+
+        // Test all fields in reset configuration
+        assertEquals("", bsg.getCountView().getText());
+        assertEquals("", bsg.getMaxView().getText());
+        assertEquals("", bsg.getMeanView().getText());
+        assertEquals("", bsg.getMedianView().getText());
+        assertEquals("", bsg.getNumbersView().getText());
+
+        // Bug fix test
+        assertEquals("", bsg.getNumberField().getText());
     }
 }

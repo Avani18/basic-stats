@@ -30,7 +30,9 @@ public class BasicStatsGUI implements View
     private MeanView meanView;
     private MaxView maxView;
     private NumbersView numbersView;
-    JTextField jtfNumber;
+    private JTextField jtfNumber;
+    private JButton jbReset;
+    private JButton jbAdd;
 
     private JFrame jfMain = new JFrame(APP_TITLE);
 
@@ -64,7 +66,7 @@ public class BasicStatsGUI implements View
 
 
 	// Panel with a text field/button to enter numbers and a button to reset the application
-	JButton jbReset = new JButton("Reset");
+	jbReset = new JButton("Reset");
 	jbReset.addActionListener(new ActionListener() {
 		// The interface ActionListener defines a call-back method actionPerformed,
 		// which is invoked if the user interacts with the GUI component -- in this
@@ -79,7 +81,7 @@ public class BasicStatsGUI implements View
 
 	jtfNumber = new JTextField(5);
     //jtfNumber.setEditable(true);
-	JButton jbAdd = new JButton("Add number");
+	jbAdd = new JButton("Add number");
 	jbAdd.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 		    // Parse input and add number to the ArrayList
@@ -132,6 +134,38 @@ public class BasicStatsGUI implements View
     public void show() {
 	// Show the frame
 	jfMain.setVisible(true);
+    }
+
+    public JTextField getCountView() {
+        return countView.getView();
+    }
+
+    public JTextField getMaxView() {
+        return maxView.getView();
+    }
+
+    public JTextField getMeanView() {
+        return meanView.getView();
+    }
+
+    public JTextField getMedianView() {
+        return medianView.getView();
+    }
+
+    public JTextArea getNumbersView() {
+        return numbersView.getView();
+    }
+
+    public JTextField getNumberField() {
+        return jtfNumber;
+    }
+
+    public JButton getAddNumberButton() {
+        return jbAdd;
+    }
+
+    public JButton getResetButton() {
+        return jbReset;
     }
 
 }
