@@ -71,6 +71,38 @@ public class BasicStats {
     }
 
     public static double max(double ... numbers) {
+
+        if (numbers == null)
+        {
+            throw new Exception("array is null");
+        }
+        if (numbers.length == 0)
+        {
+            throw new Exception("array is empty");
+        }
+        for(double num: numbers)
+        {
+            if (num == null)
+            {
+                throw new Exception("number is null");
+            }
+        }
+        // try
+        // {
+        //     for (double num: numbers)
+        //     {
+        //         Double temp = Double.parseDouble(Double.toString(num));
+        //     }
+        // }
+        // catch(NumberFormatException nfe)
+        // {
+        //     throw new NumberFormatException("Number is not valid!");
+        // }
+        // catch(NullPointerException npe)
+        // {
+        //     throw new NullPointerException("Number is not valid!");
+        // }
+
         double maxNumber = Double.NEGATIVE_INFINITY;
 
         for (double num: numbers)
