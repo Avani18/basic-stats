@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"gui","l":"BasicStats"},{"p":"<Unnamed>","l":"BasicStatsApp"},{"p":"gui","l":"BasicStatsGUI"},{"p":"model","l":"BasicStatsModel"},{"p":"gui","l":"CountView"},{"p":"gui","l":"MaxView"},{"p":"gui","l":"MeanView"},{"p":"gui","l":"MedianView"},{"p":"gui","l":"NumbersView"},{"p":"gui.view","l":"View"}]
