@@ -144,7 +144,7 @@ public class BasicStatsTest {
     @Test
     public void testResetController() {
         BasicStatsGUI bsg = new BasicStatsGUI();
-        BasicStatsModel model = new BasicStatsModel();
+        BasicStatsModel model = bsg.getModel();
 
         model.addNumber(10.0);
         model.addNumber(20.0);
@@ -165,5 +165,8 @@ public class BasicStatsTest {
 
         // Bug fix test
         assertEquals("", bsg.getNumberField().getText());
+
+        // Verify model array length
+        assertEquals(0, model.getArrayDouble().length);
     }
 }

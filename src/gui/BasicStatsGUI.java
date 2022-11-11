@@ -168,4 +168,8 @@ public class BasicStatsGUI implements View
         return jbReset;
     }
 
+    public BasicStatsModel getModel() {
+        return model;
+    }
+
 }
