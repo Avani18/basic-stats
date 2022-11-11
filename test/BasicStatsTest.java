@@ -20,7 +20,7 @@ public class BasicStatsTest {
         assertEquals (3, mode, EPS);
     }
 
-    @Test
+    @Test(expected=IllegalArgumentException.class)
     public void testMedian() {
       //Median should be 8.0 since size is even
       /* double[] numbers = {1, 4, 7, 9, 11, 21}; */
@@ -39,13 +39,16 @@ public class BasicStatsTest {
       median = BasicStats.median(numbers3);
       assertEquals(3, median, EPS);
 
-      //Median should be 0 since size is 0
+      // Median fails input validation and throws exception
       double[] numbers4 = {};
       median = BasicStats.median(numbers4);
-      assertEquals(0, median, EPS);
+
+      // Median fails input validation and throws exception
+      double[] numbers5 = null;
+      median = BasicStats.median(numbers5);
     }
 
-    @Test
+    @Test(expected=IllegalArgumentException.class)
     public void testMode() {
       //Mode should be 1 since we are taking the first mode
       double[] numbers = {1, 4, 7, 9, 11, 21};
@@ -67,10 +70,13 @@ public class BasicStatsTest {
       mode   = BasicStats.mode(numbers4);
       assertEquals (7, mode, EPS);
 
-      //Mode should be 0
+      // Mode fails input validation and throws exception
       double[] numbers5 = {};
-      mode   = BasicStats.mode(numbers5);
-      assertEquals (0, mode, EPS);
+      mode = BasicStats.mode(numbers5);
+
+      // Mode fails input validation and throws exception
+      double[] numbers6 = null;
+      mode = BasicStats.mode(numbers6);
     }
 
     @Test(expected=IllegalArgumentException.class)

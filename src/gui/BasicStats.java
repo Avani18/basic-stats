@@ -15,6 +15,15 @@ public class BasicStats {
      * Compute the mean of an array of numbers.
      */
     public static double mean(double ... numbers) {
+        if (numbers == null)
+        {
+            throw new IllegalArgumentException("array is null");
+        }
+        if (numbers.length == 0)
+        {
+            throw new IllegalArgumentException("array is empty");
+        }
+        
         double sum = 0;
         for (double num : numbers) {
             sum += num;
@@ -26,6 +35,15 @@ public class BasicStats {
      * Compute the median of an array of numbers.
      */
     public static double median(double ... numbers) {
+        if (numbers == null)
+        {
+            throw new IllegalArgumentException("array is null");
+        }
+        if (numbers.length == 0)
+        {
+            throw new IllegalArgumentException("array is empty");
+        }
+
       Arrays.sort(numbers);
 
       int size = numbers.length;
@@ -47,6 +65,15 @@ public class BasicStats {
      * Compute the mode of an array of numbers.
      */
     public static double mode(double ... numbers) {
+        if (numbers == null)
+        {
+            throw new IllegalArgumentException("array is null");
+        }
+        if (numbers.length == 0)
+        {
+            throw new IllegalArgumentException("array is empty");
+        }
+
       double mode = 0.0;
       int modeCount = 0;
 
