@@ -15,15 +15,18 @@ public class BasicStats {
      * Compute the mean of an array of numbers.
      */
     public static double mean(double ... numbers) {
+        // If array is null, throw IllegalArgumentException
         if (numbers == null)
         {
             throw new IllegalArgumentException("array is null");
         }
+
+        // If array is empty, throw IllegalArgumentException
         if (numbers.length == 0)
         {
             throw new IllegalArgumentException("array is empty");
         }
-        
+
         double sum = 0;
         for (double num : numbers) {
             sum += num;
@@ -35,10 +38,13 @@ public class BasicStats {
      * Compute the median of an array of numbers.
      */
     public static double median(double ... numbers) {
+        // If array is null, throw IllegalArgumentException
         if (numbers == null)
         {
             throw new IllegalArgumentException("array is null");
         }
+
+        // If array is empty, throw IllegalArgumentException
         if (numbers.length == 0)
         {
             throw new IllegalArgumentException("array is empty");
@@ -65,10 +71,13 @@ public class BasicStats {
      * Compute the mode of an array of numbers.
      */
     public static double mode(double ... numbers) {
+        // If array is null, throw IllegalArgumentException
         if (numbers == null)
         {
             throw new IllegalArgumentException("array is null");
         }
+
+        // If array is empty, throw IllegalArgumentException
         if (numbers.length == 0)
         {
             throw new IllegalArgumentException("array is empty");
@@ -97,19 +106,26 @@ public class BasicStats {
       return mode;
     }
 
+    /**
+     * Compute the max of an array of numbers.
+     */
     public static double max(double ... numbers) {
-
+        // If array is null, throw IllegalArgumentException
         if (numbers == null)
         {
             throw new IllegalArgumentException("array is null");
         }
+
+        // If array is empty, throw IllegalArgumentException
         if (numbers.length == 0)
         {
             throw new IllegalArgumentException("array is empty");
         }
 
+        // Initialize maxNumber to negative infinity
         double maxNumber = Double.NEGATIVE_INFINITY;
 
+        // Iterate through the list of numbers
         for (double num: numbers)
         {
             if (num > maxNumber)
@@ -118,6 +134,7 @@ public class BasicStats {
             }
         }
 
+        // Return maximum number
         return maxNumber;
     }
 }

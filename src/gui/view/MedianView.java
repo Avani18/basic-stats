@@ -24,10 +24,12 @@ class MedianView implements View
     @Override
     public void update(BasicStatsModel model)
     {
+        // If array is empty
         if (model.getArrayDouble().length == 0)
         {
             jtfMedian.setText("");
         }
+        // Otherwise display median
         else
         {
             median = BasicStats.median(model.getArrayDouble());
@@ -35,6 +37,7 @@ class MedianView implements View
         }
     }
 
+    // Method to return component
     public JTextField getView()
     {
         return jtfMedian;

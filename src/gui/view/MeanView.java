@@ -24,10 +24,12 @@ class MeanView implements View
     @Override
     public void update(BasicStatsModel model)
     {
+        // If array is empty
         if (model.getArrayDouble().length == 0)
         {
             jtfMean.setText("");
         }
+        // Otherwise display mean
         else
         {
             mean = BasicStats.mean(model.getArrayDouble());
@@ -35,6 +37,7 @@ class MeanView implements View
         }
     }
 
+    // Method to return component
     public JTextField getView()
     {
         return jtfMean;

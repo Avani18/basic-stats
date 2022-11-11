@@ -32,4 +32,8 @@ Functionalities/features added:
 1. Added the view and computation function to calculate the maximum number in an array.
 2. Added input validation at GUI level when a new number is added to the model. It displays a popup error message if the input number is invalid.
 3. Added input validation in the mean, median, mode and max function in BasicStats.java which checks for empty array and null array.
-4. Fixed the bug in the configuration after Reset button and tested it too. It clears the input number text field also when the reset button is clicked. 
+4. Fixed the bug in the configuration after Reset button and tested it too. It clears the input number text field also when the reset button is clicked.
+
+Collaborators:
+1. Muskan Jain
+2. Sahil Jindal

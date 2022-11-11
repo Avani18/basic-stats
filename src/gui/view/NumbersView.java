@@ -24,10 +24,12 @@ class NumbersView implements View
     @Override
     public void update(BasicStatsModel model)
     {
+        // If array is empty
         if (model.getArrayDouble().length == 0)
         {
             jtaNumbers.setText("");
         }
+        // Otherwise display numbers
         else
         {
             number = model.getArrayDouble()[model.getArrayDouble().length - 1];
@@ -35,6 +37,7 @@ class NumbersView implements View
         }
     }
 
+    // Method to return component
     public JTextArea getView()
     {
         return jtaNumbers;

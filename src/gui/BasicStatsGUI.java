@@ -80,7 +80,7 @@ public class BasicStatsGUI implements View
 	    });
 
 	jtfNumber = new JTextField(5);
-    //jtfNumber.setEditable(true);
+    jtfNumber.setEditable(true);
 	jbAdd = new JButton("Add number");
 	jbAdd.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
@@ -91,11 +91,13 @@ public class BasicStatsGUI implements View
                 model.addNumber(num);
     		    update(model);
             }
+            // Catch exception and display error popup
             catch(NumberFormatException nfe)
             {
                 JOptionPane.showMessageDialog(jfMain, "Please enter a valid number!",
                "Error", JOptionPane.ERROR_MESSAGE);
             }
+            // Catch exception and display error popup
             catch(NullPointerException npe)
             {
                 JOptionPane.showMessageDialog(jfMain, "Please enter a number!",
@@ -114,7 +116,8 @@ public class BasicStatsGUI implements View
     }
 
     public void update(BasicStatsModel model) {
-	    // Update the displayed list of numbers
+
+        // Bugfix, set input number field to empty string on reset or new number addition
         jtfNumber.setText("");
 
 	    // Compute and set the count
@@ -126,8 +129,10 @@ public class BasicStatsGUI implements View
 	    // Compute and set the median
 	    medianView.update(model);
 
+        // Update the displayed list of numbers
         numbersView.update(model);
 
+        // Compute and set the max
         maxView.update(model);
     }
 
@@ -136,38 +141,47 @@ public class BasicStatsGUI implements View
 	jfMain.setVisible(true);
     }
 
+    // Method to get the count component
     public JTextField getCountView() {
         return countView.getView();
     }
 
+    // Method to get the max component
     public JTextField getMaxView() {
         return maxView.getView();
     }
 
+    // Method to get the mean component
     public JTextField getMeanView() {
         return meanView.getView();
     }
 
+    // Method to get the median component
     public JTextField getMedianView() {
         return medianView.getView();
     }
 
+    // Method to get the numbers component
     public JTextArea getNumbersView() {
         return numbersView.getView();
     }
 
+    // Method to get the input number field component
     public JTextField getNumberField() {
         return jtfNumber;
     }
 
+    // Method to get the Add Number Button
     public JButton getAddNumberButton() {
         return jbAdd;
     }
 
+    // Method to get the Reset Button
     public JButton getResetButton() {
         return jbReset;
     }
 
+    // Method to get the model
     public BasicStatsModel getModel() {
         return model;
     }

@@ -24,10 +24,12 @@ class MaxView implements View
     @Override
     public void update(BasicStatsModel model)
     {
+        // If array is empty
         if (model.getArrayDouble().length == 0)
         {
             jtfMax.setText("");
         }
+        // Otherwise display max
         else
         {
             max = BasicStats.max(model.getArrayDouble());
@@ -35,6 +37,7 @@ class MaxView implements View
         }
     }
 
+    // Method to return component
     public JTextField getView()
     {
         return jtfMax;

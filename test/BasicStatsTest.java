@@ -79,6 +79,8 @@ public class BasicStatsTest {
       mode = BasicStats.mode(numbers6);
     }
 
+    // Model test case
+    // Test for when a number is added to the model
     @Test(expected=IllegalArgumentException.class)
     public void testAddNum() {
         BasicStatsModel model = new BasicStatsModel();
@@ -95,6 +97,7 @@ public class BasicStatsTest {
         model.addNumber(null);
     }
 
+    // Test for various cases to compute max number
     @Test(expected=IllegalArgumentException.class)
     public void testMax() {
         double max;
@@ -128,6 +131,8 @@ public class BasicStatsTest {
         max = BasicStats.max(numbers6);
     }
 
+    // View test case
+    // Tests if initial configuration is displayed fine
     @Test
     public void testInitialView() {
         BasicStatsGUI bsg = new BasicStatsGUI();
@@ -141,6 +146,8 @@ public class BasicStatsTest {
         assertEquals("", bsg.getNumberField().getText());
     }
 
+    // Controller test case
+    // Tests the functionality of Reset button and Reset configuration
     @Test
     public void testResetController() {
         BasicStatsGUI bsg = new BasicStatsGUI();

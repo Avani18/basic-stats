@@ -24,10 +24,12 @@ class CountView implements View
     @Override
     public void update(BasicStatsModel model)
     {
+        // If array is empty
         if (model.getArrayDouble().length == 0)
         {
             jtfCount.setText("");
         }
+        // Otherwise display count
         else
         {
             count = model.getArrayDouble().length;
@@ -35,6 +37,7 @@ class CountView implements View
         }
     }
 
+    // Method to return component
     public JTextField getView()
     {
         return jtfCount;
