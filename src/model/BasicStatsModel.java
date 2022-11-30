@@ -35,6 +35,15 @@ public class BasicStatsModel
 	this.data.add(number);
     }
 
+    public void removeLastNumber() {
+        if (this.data.size() > 0) {
+            this.data.remove(this.data.size() - 1);
+        }
+        else {
+            throw new IllegalArgumentException("List is already empty");
+        }
+    }
+
     /**
      * Resets the list of numbers.
      *
