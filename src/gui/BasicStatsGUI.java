@@ -32,6 +32,7 @@ public class BasicStatsGUI implements View
     /** The GUI is applying the Composite design pattern */
     private java.util.List<View> views = new ArrayList<View>();
     private JFrame jfMain = new JFrame(APP_TITLE);
+	private JButton jbUndo;
 
     public BasicStatsGUI() {	
 	// Create the main frame of the application, and set size and position
@@ -61,9 +62,16 @@ public class BasicStatsGUI implements View
 	AddNumberViewController addNumberViewController = new AddNumberViewController(this, jpInput);
 	addView(addNumberViewController);
 
-	UndoViewController undoViewController = new UndoViewController(this, jpInput);
-	addView(undoViewController);
-	
+	jbUndo = new JButton("Undo Add Number");
+	jbUndo.setEnabled(false);
+	jbUndo.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+		    // Parse input and add number to the ArrayList	    
+		    undoAdd();
+		}
+	});
+	jpInput.add(jbUndo);
+
 	JButton jbReset = new JButton("Reset");
 	jbReset.addActionListener(new ActionListener() {
 		// The interface ActionListener defines a call-back method actionPerformed,
@@ -72,7 +80,7 @@ public class BasicStatsGUI implements View
 		public void actionPerformed(ActionEvent e) {
 		    reset();
 		}
-	    });
+	});
 	jpInput.add(jbReset);
 	
 	
@@ -106,11 +114,15 @@ public class BasicStatsGUI implements View
 	model.addNumber(num);
 
 	update(model);
+	jbUndo.setEnabled(true);
     }
 
 	public void undoAdd() {
 		model.removeLastNumber();
 		update(model);
+		if (model.getArrayDouble().length == 0) {
+			jbUndo.setEnabled(false);
+		}
 	}
     
     public void reset() {
@@ -118,13 +130,14 @@ public class BasicStatsGUI implements View
 	model.reset();
 	
 	update(model);
+	jbUndo.setEnabled(false);
     }
 
     public void update(BasicStatsModel model) {
 	// For the Composite design pattern, iterate calling each non-null component.
-	for (View currentView : views) {
-	    currentView.update(model);
-	}
+		for (View currentView : views) {
+			currentView.update(model);
+		}
     }
 
     public String getStringValue() {
