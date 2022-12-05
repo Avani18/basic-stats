@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 import org.junit.After;
 import org.junit.Before;
@@ -221,5 +222,114 @@ public class BasicStatsTest {
       double[] numbers5 = {};
       mode   = BasicStats.mode(numbers5);
       assertEquals (0, mode, EPS);
+    }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void testInitialUndoNotPermitted() {
+        // Perform setup and check pre-conditions
+        assertTrue(Arrays.equals(new double[] {}, model.getArrayDouble()));
+        // Call the unit under test
+        model.removeLastNumber();
+        // Check the post-conditions (see @Test)
+    }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void testUndoAfterResetNotPermitted() {
+        // Perform setup and check pre-conditions
+        assertTrue(Arrays.equals(new double[] {}, model.getArrayDouble()));
+        double num = 2;
+        model.addNumber(num);
+        checkModelAddNumberPostconditions(num);
+        model.reset();
+        assertNotNull(model);
+	    assertEquals(0, model.getArrayDouble().length);
+        assertTrue(Arrays.equals(new double[] {}, model.getArrayDouble()));
+        // Call the unit under test
+        model.removeLastNumber();
+        // Check the post-conditions (see @Test)
+    }
+
+    @Test
+    public void testUndoResultingEmptyConfiguration() {
+        // Perform setup and check pre-conditions
+        assertNotNull(model);
+	    assertEquals(0, model.getArrayDouble().length);
+        assertTrue(Arrays.equals(new double[] {}, model.getArrayDouble()));
+        double num = 2;
+        model.addNumber(num);
+        checkModelAddNumberPostconditions(num);
+
+        // Call the unit under test
+        model.removeLastNumber();
+
+        // Check the post-conditions
+        assertNotNull(model);
+	    assertEquals(0, model.getArrayDouble().length);
+        assertTrue(Arrays.equals(new double[] {}, model.getArrayDouble()));
+    }
+
+    @Test
+    public void testViewUndoResultingEmptyConfiguration() {
+	// Perform setup and pre-condition checks
+	double num = 3.0;
+	gui.addNumber(num);
+	double[] modelData = gui.getArrayDouble();
+	List<String> expected = new ArrayList<String>();
+	expected.add("" + modelData.length);
+	expected.add("" + BasicStats.mean(modelData));
+	expected.add("" + BasicStats.median(modelData));
+	expected.add("" + BasicStats.maximum(modelData));
+	expected.add("" + num + ",");
+	expected.add("");
+	assertEquals(expected.toString(), gui.getStringValue());
+	// Call the unit under test
+	gui.undoAdd();
+	// Check the post-conditions
+	checkViewInitialPostconditions();
+    }
+
+    @Test
+    public void testUndoResultingNonEmptyConfiguration() {
+        // Perform setup and check pre-conditions
+        assertNotNull(model);
+	    assertEquals(0, model.getArrayDouble().length);
+        assertTrue(Arrays.equals(new double[] {}, model.getArrayDouble()));
+        double num = 2;
+        model.addNumber(num);
+        checkModelAddNumberPostconditions(num);
+        num = 3;
+        model.addNumber(num);
+        checkModelAddNumberPostconditions(num);
+
+        // Call the unit under test
+        model.removeLastNumber();
+
+        // Check the post-conditions
+        assertNotNull(model);
+	    assertEquals(1, model.getArrayDouble().length);
+        assertTrue(Arrays.equals(new double[] {2}, model.getArrayDouble()));
+    }
+
+    @Test
+    public void testUndoMultipleTimes() {
+        // Perform setup and check pre-conditions
+        assertNotNull(model);
+	    assertEquals(0, model.getArrayDouble().length);
+        assertTrue(Arrays.equals(new double[] {}, model.getArrayDouble()));
+        double num = 2;
+        model.addNumber(num);
+        checkModelAddNumberPostconditions(num);
+        num = 3;
+        model.addNumber(num);
+        checkModelAddNumberPostconditions(num);
+
+        // Call the unit under test
+        model.removeLastNumber();
+        model.removeLastNumber();
+
+        // Check the post-conditions
+        assertNotNull(model);
+	    assertEquals(0, model.getArrayDouble().length);
+        assertTrue(Arrays.equals(new double[] {}, model.getArrayDouble()));
     }
 }
