@@ -28,3 +28,11 @@ Program features:
 * Computes the mean of the set of numbers.
 * Computes the median of the set of numbers.
 * Computes the maximum of the set of numbers.    
+* Resets the list of numbers and all the values.
+* Undo/Removes the last number added(if any).
+
+Collaborators:
+
+* Avani Jindal
+* Muskan Jain
+* Sahil Jindal
