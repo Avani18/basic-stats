@@ -13,7 +13,7 @@ public class BasicStats {
 
     /**
      * Computes the maximum of a given array of numbers.
-     *
+     * @param numbers An array of numbers
      * @return The maximum value in the given array of numbers
      *
      * @throws IllegalArgumentException if the given array of numbers is null or empty
@@ -36,6 +36,8 @@ public class BasicStats {
 
     /**
      * Compute the mean of an array of numbers.
+     * @param numbers An array of numbers
+     * @return The mean value of the given array of numbers
      */
     public static double mean(double ... numbers) {
         double sum = 0;
@@ -47,6 +49,8 @@ public class BasicStats {
 
     /**
      * Compute the median of an array of numbers.
+     * @param numbers An array of numbers
+     * @return The median value of the given array of numbers
      */
     public static double median(double ... numbers) {
       Arrays.sort(numbers);
@@ -68,6 +72,8 @@ public class BasicStats {
 
     /**
      * Compute the mode of an array of numbers.
+     * @param numbers An array of numbers
+     * @return The mode value for the given array of numbers
      */
     public static double mode(double ... numbers) {
       double mode = 0.0;
