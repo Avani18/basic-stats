@@ -224,6 +224,13 @@ public class BasicStatsTest {
       assertEquals (0, mode, EPS);
     }
 
+    protected void checkModelAddSecondNumberPostconditions(double number) {
+        assertNotNull(model);
+        double[] modelData = model.getArrayDouble();
+        assertEquals(2, modelData.length);
+        assertEquals(number, modelData[1], EPS);	
+        }
+
     @Test(expected=IllegalArgumentException.class)
     public void testInitialUndoNotPermitted() {
         // Perform setup and check pre-conditions
@@ -299,7 +306,7 @@ public class BasicStatsTest {
         checkModelAddNumberPostconditions(num);
         num = 3;
         model.addNumber(num);
-        checkModelAddNumberPostconditions(num);
+        checkModelAddSecondNumberPostconditions(num);
 
         // Call the unit under test
         model.removeLastNumber();
@@ -321,7 +328,7 @@ public class BasicStatsTest {
         checkModelAddNumberPostconditions(num);
         num = 3;
         model.addNumber(num);
-        checkModelAddNumberPostconditions(num);
+        checkModelAddSecondNumberPostconditions(num);
 
         // Call the unit under test
         model.removeLastNumber();
