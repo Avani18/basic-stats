@@ -31,6 +31,16 @@ Program features:
 * Resets the list of numbers and all the values.
 * Undo/Removes the last number added(if any).
 
+### Undo Functionality
+* Added a button for Undo in `BasicStatsGUI.java` and disabled it initially
+* On click, it calls `undoAdd()` method in the same file.
+* In the `undoAdd()` method, the model's method `removeLastNumber` is called which removes the number from the data in model. It also updates the model and disables the button if data length is 0.
+* On reset, the button is disabled again.
+* When a number is added, the button is enabled. 
+* When the model is updated, if length of data is not zero, it clears the NumbersView TextArea and gets the latest data from model to display on the TextArea.
+* The `removeLastNumber` method in model checks if there is a data element that can be removed and deletes it. Else, it throws an `IllegalArgumentException`.
+
+
 Collaborators:
 
 * Avani Jindal
