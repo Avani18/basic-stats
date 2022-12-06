@@ -35,6 +35,14 @@ public class BasicStatsModel
 	this.data.add(number);
     }
 
+    /**
+     * Removes the last number from the list of numbers.
+     *
+     * Pre-condition: It checks if there exists a single number that can
+     *                  be removed from the list of numbers. 
+     *
+     * @exception IllegalArgumentException if the list is already empty
+     */
     public void removeLastNumber() {
         if (this.data.size() > 0) {
             this.data.remove(this.data.size() - 1);

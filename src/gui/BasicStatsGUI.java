@@ -62,11 +62,12 @@ public class BasicStatsGUI implements View
 	AddNumberViewController addNumberViewController = new AddNumberViewController(this, jpInput);
 	addView(addNumberViewController);
 
+	// Button to remove last added number
 	jbUndo = new JButton("Undo Add Number");
 	jbUndo.setEnabled(false);
 	jbUndo.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-		    // Parse input and add number to the ArrayList	    
+		    // call method to undo last number added	    
 		    undoAdd();
 		}
 	});

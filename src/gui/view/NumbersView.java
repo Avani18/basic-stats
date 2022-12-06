@@ -32,8 +32,6 @@ public class NumbersView implements View
 	// Add number
 	else {
 	    // Update the displayed list of numbers
-	    //double num = model.getArrayDouble()[model.getArrayDouble().length - 1];
-	    //jtaNumbers.append(num + ",");
 		jtaNumbers.setText("");
 		double[] nums = model.getArrayDouble();
 		for(double num: nums) {
